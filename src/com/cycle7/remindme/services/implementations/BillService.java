@@ -35,7 +35,6 @@ public class BillService implements IBillService {
 
 	@Override
 	public List<Bill> getAllBills() {
-		// TODO Auto-generated method stub
-		return null;
+		return db.getAllBills();
 	}
 }

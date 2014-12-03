@@ -1,5 +1,9 @@
 package com.cycle7.remindme.database;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -31,6 +35,9 @@ public class DatabaseHandler extends SQLiteOpenHelper implements IDatabaseHandle
 																		   			 AMOUNT+" real, " +
 																		   			 DUE_DATE+" text, " +
 																		   			 RECURRENCE+" text)";
+	
+	//Queries
+	private static final String GET_ALL_BILLS = "SELECT * FROM "+BILLS_TABLE;
 
 	@Inject
 	public DatabaseHandler(Context context){
@@ -72,6 +79,40 @@ public class DatabaseHandler extends SQLiteOpenHelper implements IDatabaseHandle
 			Log.e(CLASS_NAME, "Error in addBill");
 		}
 		return affectedRow;
+	}
+	
+	public List<Bill> getAllBills(){
+		List<Bill> allBills = new ArrayList<Bill>();
+		  
+    	SQLiteDatabase db = this.getReadableDatabase();
+    	cursor = db.rawQuery(GET_ALL_BILLS, null);
+
+    	//Gets all of the column indexes to map the values to a bill object
+    	int billIdIndex = cursor.getColumnIndex(ID);
+    	int billNameIndex = cursor.getColumnIndex(NAME);
+    	int billAmountIndex = cursor.getColumnIndex(AMOUNT);
+    	int billDueDateIndex = cursor.getColumnIndex(DUE_DATE);
+    	int billRecurrenceIndex = cursor.getColumnIndex(RECURRENCE);
+    	
+    	if (cursor != null && cursor.moveToFirst()) {         
+    		do{
+    			try{
+                    //Maps all of the information to a bill object
+    				Bill bill = new Bill();
+    				bill.setId(cursor.getInt(billIdIndex));
+    				bill.setName(cursor.getString(billNameIndex));
+    				bill.setAmount(cursor.getDouble(billAmountIndex));
+    				bill.setDueDate(cursor.getString(billDueDateIndex));
+    				bill.setRecurrence(cursor.getString(billRecurrenceIndex));
+    				allBills.add(bill);
+    			}catch(Exception e){
+                    e.printStackTrace();
+    			}
+    		}while(cursor.moveToNext());
+    	}
+    	db.close();
+
+    	return allBills;
 	}
 
 }
