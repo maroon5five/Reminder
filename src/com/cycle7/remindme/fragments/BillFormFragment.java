@@ -105,6 +105,7 @@ public class BillFormFragment extends RoboFragment {
 		//Get all of the values from the page
 		billName = billNameEditText.getText().toString();
 		billAmount = billAmountEditText.getText().toString();
+		dueDate = dueDatePicker.getText().toString();
 		recurrence = recurrenceSpinner.getSelectedItem().toString();
 		//sends the bill information to the bill service to be persisted
 		billService.persistBill(billName, billAmount, dueDate, recurrence, getActivity());

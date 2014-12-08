@@ -10,14 +10,15 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import com.cycle7.remindme.activities.BillFormActivity;
 import com.cycle7.remindme.activities.BillListActivity;
 
 public class SplashScreenFragment extends RoboFragment {
 	
-	@InjectView(R.id.addBillButton) 	private Button addBillButton;
-	@InjectView(R.id.billListButton) 	private Button billListButton;
+	@InjectView(R.id.addBillButton) 	private ImageButton addBillButton;
+	@InjectView(R.id.viewBillListButton) 	private ImageButton billListButton;
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {

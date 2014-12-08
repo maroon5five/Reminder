@@ -1,40 +1,116 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/RelativeLayout1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:orientation="vertical"
-    android:gravity="center"
+    android:background="@drawable/purplewallpaper2"
     tools:context=".SplashScreen" >
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" 
-        android:orientation="horizontal"
-        android:gravity="center">
+    <TextView
+        android:id="@+id/menuWelcomeMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="55dp"
+        android:text="@string/app_welcome_message"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="25sp" />
 
-        <Button
+    <LinearLayout
+        android:id="@+id/buttonLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/menuWelcomeMessage"
+        android:layout_marginTop="50dp" >
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1" />
+
+        <ImageButton
+            android:id="@+id/viewCalendarButton"
+            android:layout_width="@dimen/menu_button_width"
+            android:layout_height="@dimen/menu_button_height"
+            android:background="@drawable/calendar_icon2" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1" />
+
+        <ImageButton
             android:id="@+id/addBillButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/addBill" />
+            android:layout_width="@dimen/menu_button_width"
+            android:layout_height="@dimen/menu_button_height"
+            android:background="@drawable/add_icon3" />
 
+        <View
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1" />
+
+        <ImageButton
+            android:id="@+id/viewBillListButton"
+            android:layout_width="@dimen/menu_button_width"
+            android:layout_height="@dimen/menu_button_height"
+            android:background="@drawable/list_icon3" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1" />
     </LinearLayout>
+
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" 
-        android:orientation="horizontal"
-        android:gravity="center">
+        android:id="@+id/buttonTextLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/buttonLayout"
+        android:layout_marginTop="16dp" >
 
-        <Button
-            android:id="@+id/billListButton"
-            android:layout_width="wrap_content"
+        <View
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/viewCalendarText"
+            android:layout_width="55dp"
+            android:gravity="center"
             android:layout_height="wrap_content"
-            android:text="@string/listBills" />
+            android:text="@string/calendarView" />
 
+        <View
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/addBillText"
+            android:layout_width="55dp"
+            android:gravity="center"
+            android:layout_height="wrap_content"
+            android:text="@string/createBill" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/viewBillListButtonText"
+            android:layout_width="55dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/billList" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1" />
     </LinearLayout>
 
-</LinearLayout>
+</RelativeLayout>
