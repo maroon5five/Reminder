@@ -16,6 +16,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -24,10 +25,11 @@ public class BillListFragment extends RoboListFragment {
 	@Inject IBillService billService;
 	@InjectView(R.layout.bill_list_item) LinearLayout layout;
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState){;
-		super.onCreateView(inflater, parent, savedInstanceState);
-
-		return inflater.inflate(R.layout.activity_bill_list, parent, false);
+	public void onCreate(Bundle savedInstanceState){;
+		super.onCreate(savedInstanceState);
+		List<Bill> billList = billService.getAllBills();
+		ArrayAdapter<Bill> adapter = new ArrayAdapter(getActivity(), R.layout.bill_list_item, billList);
+		setListAdapter(adapter);
 	}
 	/**
 	 * Connects all the views from the page.  Called after the view is created
@@ -35,11 +37,7 @@ public class BillListFragment extends RoboListFragment {
 	@Override
 	public void onViewCreated(View view, Bundle savedInstanceState) {
 	    super.onViewCreated(view, savedInstanceState);
-	    RoboGuice.getInjector(getActivity()).injectViewMembers(this);
-	    
-	    
-		List<Bill> billList = billService.getAllBills();
-		for(Bill bill : billList){
+	/*	for(Bill bill : billList){
 			TextView billNameTextView = (TextView) layout.findViewById(R.id.listBillName);
 			billNameTextView.setText(bill.getName());
 			TextView billAmountTextView = (TextView) layout.findViewById(R.id.listBillAmount);
@@ -47,6 +45,6 @@ public class BillListFragment extends RoboListFragment {
 			TextView billDueDateTextView = (TextView) layout.findViewById(R.id.ListBillDueDate);
 			billDueDateTextView.setText(bill.getDueDate());
 			layoutInflater.inflate(layout.getId(), layout);
-		}
+		}*/
 	}
 }
